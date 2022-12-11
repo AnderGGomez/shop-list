@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "productName": "huevo",
+      "details": "X30",
+      "url": "https://cdn-icons-png.flaticon.com/512/3142/3142726.png",
+      "id": 1
+    },
+    {
+      "productName": "arroz",
+      "url": "https://cdn-icons-png.flaticon.com/512/4464/4464970.png",
+      "details": "X1",
+      "id": 2
+    },
+    {
+      "details": "X1",
+      "productName": "azucar",
+      "url": "https://cdn-icons-png.flaticon.com/512/5900/5900648.png",
+      "id": 3
+    },
+    {
+      "productName": "galletas saltin",
+      "url": "https://cdn-icons-png.flaticon.com/512/3349/3349229.png",
+      "details": "X1",
+      "id": 4
+    },
+    {
+      "productName": "pan tajado",
+      "url": "https://cdn-icons-png.flaticon.com/512/883/883561.png",
+      "details": "X1",
+      "id": 5
+    }
+  ],
+  "comments": [],
+  "profile": []
+}
