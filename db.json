@@ -3,6 +3,7 @@
     {
       "productName": "huevo",
       "details": "X30",
+      "quantity": 0,
       "url": "https://cdn-icons-png.flaticon.com/512/3142/3142726.png",
       "id": 1
     },
@@ -10,27 +11,66 @@
       "productName": "arroz",
       "url": "https://cdn-icons-png.flaticon.com/512/4464/4464970.png",
       "details": "X1",
+      "quantity": 0,
       "id": 2
     },
     {
       "details": "X1",
       "productName": "azucar",
+      "quantity": 0,
       "url": "https://cdn-icons-png.flaticon.com/512/5900/5900648.png",
       "id": 3
     },
     {
       "productName": "galletas saltin",
+      "quantity": 0,
       "url": "https://cdn-icons-png.flaticon.com/512/3349/3349229.png",
       "details": "X1",
       "id": 4
     },
     {
       "productName": "pan tajado",
+      "quantity": 0,
       "url": "https://cdn-icons-png.flaticon.com/512/883/883561.png",
       "details": "X1",
       "id": 5
+    },
+    {
+      "productName": "Leche",
+      "url": "https://cdn-icons-png.flaticon.com/512/2376/2376351.png",
+      "details": "X12",
+      "quantity": 0,
+      "id": 6
     }
   ],
-  "comments": [],
-  "profile": []
+  "users": [
+    {
+      "id": 1,
+      "groupName": "familia gomez",
+      "username": "FGomez",
+      "password": "$odaEstereo1"
+    }
+  ],
+  "orders": [
+    {
+      "products": [
+        {
+          "productName": "huevo",
+          "details": "X30",
+          "quantity": 2,
+          "url": "https://cdn-icons-png.flaticon.com/512/3142/3142726.png",
+          "id": 1
+        },
+        {
+          "productName": "arroz",
+          "url": "https://cdn-icons-png.flaticon.com/512/4464/4464970.png",
+          "details": "X1",
+          "quantity": 1,
+          "id": 2
+        }
+      ],
+      "user": 1,
+      "id": 1
+    }
+  ]
 }

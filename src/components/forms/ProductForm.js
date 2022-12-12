@@ -1,18 +1,22 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
 import { useDispatch } from 'react-redux'
-import { addProduct } from '../../reducers/productReducer'
+import { addProduct } from '../../actions/productActions'
 import { required, mustBeLetter, mustBeURL, minLength, composeValidators } from './validators'
 
-
-const minLength3 = minLength(3)
-const minLength22 = minLength(22)
 
 const ProducForm = () => {
   const dispatch = useDispatch()
 
+  const minLength3 = minLength(3)
+  const minLength22 = minLength(22)
+
   const onSubmit = (values, form) => {
-    dispatch(addProduct(values))
+    const productObj = {
+      ...values,
+      quantity: 0
+    }
+    dispatch(addProduct(productObj))
     form.restart()
   }
 

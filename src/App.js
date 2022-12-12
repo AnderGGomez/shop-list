@@ -1,22 +1,37 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProducForm from "./components/forms/ProductForm";
 import ProductList from "./components/Products/ProductList";
-import { initializeProducts } from "./reducers/productReducer";
+import { initializeProducts } from "./actions/productActions";
+import LoginForm from "./components/forms/loginForm";
+import { initializeUser, logoutUser } from "./actions/loginActions";
+import Cart from "./components/Cart/Cart";
+import Order from "./components/Order/Order";
 
-const  App = () => {
+const App = () => {
   const dispatch = useDispatch()
+  const user = useSelector(state => state.login)
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(initializeProducts())
-  },[dispatch])
+    dispatch(initializeUser())
+  }, [dispatch])
 
-
+  const logout = () => {
+    dispatch(logoutUser())
+  }
   return (
-   <div>
-    <ProductList />
-    <ProducForm />
-   </div>
+    <div>
+
+      {user ? (
+        <div>
+          <Order />
+          <Cart />
+          <ProducForm />
+          <button onClick={()=>{logout()}}>logout</button>
+        </div>
+      ) : (<LoginForm />)}
+    </div>
   )
 }
 
