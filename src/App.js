@@ -1,38 +1,51 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ProducForm from "./components/forms/ProductForm";
-import ProductList from "./components/Products/ProductList";
-import { initializeProducts } from "./actions/productActions";
 import LoginForm from "./components/forms/loginForm";
-import { initializeUser, logoutUser } from "./actions/loginActions";
+import { logoutUser } from "./actions/loginActions";
 import Cart from "./components/Cart/Cart";
 import Order from "./components/Order/Order";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 const App = () => {
   const dispatch = useDispatch()
-  const user = useSelector(state => state.login)
 
+  /*
   useEffect(() => {
-    dispatch(initializeProducts())
     dispatch(initializeUser())
-  }, [dispatch])
+  }, [dispatch])*/
 
   const logout = () => {
     dispatch(logoutUser())
   }
+  const padding = {
+    padding:'1em'
+  }
   return (
     <div>
-
-      {user ? (
-        <div>
-          <Order />
-          <Cart />
-          <ProducForm />
-          <button onClick={()=>{logout()}}>logout</button>
-        </div>
-      ) : (<LoginForm />)}
+      <Link style={padding} to='/product'>Product</Link>
+      <Link style={padding} to='/cart'>Carrito</Link>
+      <Link style={padding} to='/orders'>Ordenes</Link>
+      <button onClick={()=>{logout()}}>logout</button>
+      <Routes>
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/product' element={
+          <ProtectedRoutes>
+            <ProducForm />
+          </ProtectedRoutes>
+        }/>
+        <Route path='/cart' element={
+          <ProtectedRoutes>
+            <Cart />
+          </ProtectedRoutes>
+        }/>
+        <Route path='/' element={<Navigate to='/cart' />}/>
+      </Routes>
     </div>
+
   )
 }
-
+/**
+ *       
+ */
 export default App;

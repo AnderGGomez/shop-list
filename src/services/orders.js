@@ -9,7 +9,6 @@ const getAll = async () => {
 
 const getOrderUser = async (userId) => {
   const response = await axios.get(`${baseUrl}/?user=${userId}`)
-  console.log(response.data)
   if(response.data.length === 0){
     return null
   }else{

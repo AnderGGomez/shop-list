@@ -6,7 +6,6 @@ export const INIT_ORDER = 'INIT_ORDER'
 export const initializeOrder = (userId) => {
   return async dispatch => {
     const order = await orderService.getOrderUser(userId)
-    console.log(order)
     dispatch({
       type:INIT_ORDER,
       data:order

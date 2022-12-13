@@ -1,4 +1,4 @@
-import { INCREMENT, INIT_CART, NEW_CART } from "../actions/cartActions";
+import { UPDATE_CART, INIT_CART, NEW_CART } from "../actions/cartActions";
 
 const cartReducer = (state=[], actions) => {
   switch (actions.type) {
@@ -6,7 +6,7 @@ const cartReducer = (state=[], actions) => {
       return actions.data
     case NEW_CART:
       return actions.data
-    case INCREMENT:
+    case UPDATE_CART:
       return state.map(product => product.id !== actions.data.id ? product : actions.data)
     default:
       return state;

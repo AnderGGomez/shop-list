@@ -57,7 +57,7 @@
         {
           "productName": "huevo",
           "details": "X30",
-          "quantity": 2,
+          "quantity": 1,
           "url": "https://cdn-icons-png.flaticon.com/512/3142/3142726.png",
           "id": 1
         },
@@ -65,8 +65,29 @@
           "productName": "arroz",
           "url": "https://cdn-icons-png.flaticon.com/512/4464/4464970.png",
           "details": "X1",
-          "quantity": 1,
+          "quantity": 10,
           "id": 2
+        },
+        {
+          "details": "X1",
+          "productName": "azucar",
+          "quantity": 3,
+          "url": "https://cdn-icons-png.flaticon.com/512/5900/5900648.png",
+          "id": 3
+        },
+        {
+          "productName": "pan tajado",
+          "quantity": 4,
+          "url": "https://cdn-icons-png.flaticon.com/512/883/883561.png",
+          "details": "X1",
+          "id": 5
+        },
+        {
+          "productName": "Leche",
+          "url": "https://cdn-icons-png.flaticon.com/512/2376/2376351.png",
+          "details": "X12",
+          "quantity": 2,
+          "id": 6
         }
       ],
       "user": 1,

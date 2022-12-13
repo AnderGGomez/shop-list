@@ -2,7 +2,7 @@ import productService from "../services/products"
 
 export const NEW_CART = 'NEW_CART'
 export const INIT_CART = 'INIT_CART'
-export const INCREMENT = 'INCREMENT'
+export const UPDATE_CART = 'UPDATE_CART'
 
 export const initializeCart = () => {
   return async dispatch => {
@@ -15,15 +15,11 @@ export const initializeCart = () => {
 }
 
 
-export const increment = (productObj) => {
+export const updateCart = (productObj) => {
   return dispatch => {
     dispatch({
-      type: INCREMENT,
+      type: UPDATE_CART,
       data: productObj
     })
   }
-}
-
-export const decrement = (producObj) => {
-  
 }

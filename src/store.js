@@ -5,20 +5,28 @@ import loginReducer from "./reducers/loginReducer";
 import cartReducer from "./reducers/cartReducer";
 import productReducer from "./reducers/productReducer";
 import orderReducer from "./reducers/orderReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import { persistReducer, persistStore } from 'redux-persist'
+import storage from "redux-persist/lib/storage";
 
-const reducer = combineReducers({
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['login']
+}
+const rootReducer = combineReducers({
   products: productReducer, 
   cart: cartReducer,
   login: loginReducer,
   order: orderReducer,
 })
 
-const store = createStore(
-  reducer,
-  composeWithDevTools(
-    applyMiddleware(thunk)
-  )
-)
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: [thunk]
+})
 
 
-export default store
+export const  persistor = persistStore(store)
