@@ -6,7 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
 import App from './App';
 import { store, persistor } from './store';
-import {theme} from './components/Estilos/estilos'
+import { theme } from './components/Estilos/estilos'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,11 +14,10 @@ root.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
-          <Router>
-          <App />
-        </Router>
+            <Router>
+              <App />
+            </Router>
         </ThemeProvider>
-        
       </PersistGate>
     </Provider>
   </React.StrictMode>

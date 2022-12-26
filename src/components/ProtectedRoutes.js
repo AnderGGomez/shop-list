@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux"
-import { Navigate, Route } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 
 const ProtectedRoutes = ({ children }) => {
   const auth = useSelector(state => state.login)
-
-  return auth ? children : <Navigate to='/login' />
+  return auth.token ? children : <Navigate to='/login' />
 
 }
 

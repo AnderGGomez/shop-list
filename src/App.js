@@ -1,20 +1,22 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProducForm from "./components/forms/ProductForm";
 import LoginForm from "./components/forms/loginForm";
-import { logoutUser } from "./actions/loginActions";
-import Cart from "./components/Cart/Cart";
-import Order from "./components/Order/Order";
+import { initializeUser, logoutUser } from "./actions/loginActions";
+import Inventory from "./components/Inventory/Inventory";
 import { Link, Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import { initializeInventory } from "./actions/inventoryActions";
+import { useEffect } from "react";
+import ProductList from "./components/Products/ProductList";
+import { GlobalStyle } from "./components/Estilos/estilos";
 
 const App = () => {
   const dispatch = useDispatch()
-
-  /*
+  const user = useSelector(state => state.login)
   useEffect(() => {
-    dispatch(initializeUser())
-  }, [dispatch])*/
-
+    dispatch(initializeInventory(user.token))
+  }, [dispatch, user])
+  
   const logout = () => {
     dispatch(logoutUser())
   }
@@ -23,29 +25,32 @@ const App = () => {
   }
   return (
     <div>
-      <Link style={padding} to='/product'>Product</Link>
-      <Link style={padding} to='/cart'>Carrito</Link>
-      <Link style={padding} to='/orders'>Ordenes</Link>
+      <GlobalStyle />
+      <Link style={padding} to='/product/new'>Product</Link>
+      <Link style={padding} to='/product/list'>Product List</Link>
+      <Link style={padding} to='/inventory'>Inventario</Link>
       <button onClick={()=>{logout()}}>logout</button>
       <Routes>
-        <Route path='/login' element={<LoginForm />} />
-        <Route path='/product' element={
+        <Route path='/login' element={user.token ? <Navigate to='/' /> : <LoginForm />} />
+        <Route path='/product/new' element={
           <ProtectedRoutes>
             <ProducForm />
           </ProtectedRoutes>
         }/>
-        <Route path='/cart' element={
+        <Route path='/product/list' element={
           <ProtectedRoutes>
-            <Cart />
+            <ProductList />
           </ProtectedRoutes>
         }/>
-        <Route path='/' element={<Navigate to='/cart' />}/>
+        <Route path='/inventory' element={
+          <ProtectedRoutes>
+            <Inventory />
+          </ProtectedRoutes>
+        }/>
+        <Route path='/' element={<Navigate to='/inventory' />}/>
       </Routes>
     </div>
 
   )
 }
-/**
- *       
- */
 export default App;

@@ -1,51 +1,87 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
-import { useDispatch } from 'react-redux'
-import { addProduct } from '../../actions/productActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { addProduct } from '../../actions/inventoryActions'
+import { Button, FieldButtons, FieldDiv, FormDiv, Img, Input, Label } from '../Estilos/estilos'
 import { required, mustBeLetter, mustBeURL, minLength, composeValidators } from './validators'
 
 
 const ProducForm = () => {
   const dispatch = useDispatch()
-
+  const inventory = useSelector(state => state.inventory)
+  const user = useSelector(state => state.login)
   const minLength3 = minLength(3)
   const minLength22 = minLength(22)
 
   const onSubmit = (values, form) => {
-    const productObj = {
-      ...values,
-      quantity: 0
-    }
-    dispatch(addProduct(productObj))
+    dispatch(addProduct(values, inventory.id, user.token))
     form.restart()
   }
+
 
   return (
     <div>
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
-          <form onSubmit={handleSubmit}>
-            <Field name="productName" validate={composeValidators(required, mustBeLetter, minLength3)}>
-              {({ input, meta }) => (
-                <div>
-                  <label>Nombre del producto:</label>
-                  <input {...input} type="text" placeholder="Nombre del producto" />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-            <Field name="url" validate={composeValidators(required, mustBeURL, minLength22)}>
-              {({ input, meta }) => (
-                <div>
-                  <label>URL:</label>
-                  <input {...input} type="text" placeholder="URL imagen" />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-            <Field
-              name="details"
+        render={({ handleSubmit, form, submitting, pristine, values, invalid }) => (
+          <FormDiv>
+            <form onSubmit={handleSubmit}>
+              <Field name="name" validate={composeValidators(required, mustBeLetter, minLength3)}>
+                {({ input, meta }) => (
+                  <FieldDiv>
+                    <Img src='https://cdn-icons-png.flaticon.com/512/4772/4772299.png' height='20px' width='20px' alt=''/>
+                    <Label> Nombre: </Label>
+                    <Input {...input} type="text" placeholder="Nombre del producto" />
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </FieldDiv>
+                )}
+              </Field>
+              <Field name="url" validate={composeValidators(required, mustBeURL, minLength22)}>
+                {({ input, meta }) => (
+                  <FieldDiv>
+                    <Img src='https://cdn-icons-png.flaticon.com/512/3214/3214679.png' height='20px' width='20px' alt=''/>
+                    <Label>URL:</Label>
+                    <Input {...input} type="text" placeholder="URL imagen" />
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </FieldDiv>
+                )}
+              </Field>
+              <Field name='unidad' validate={composeValidators(required, minLength3)}>
+                {({ input, meta }) => (
+                  <FieldDiv>
+                    <Img src='https://cdn-icons-png.flaticon.com/512/285/285917.png' height='20px' width='20px' alt=''/>
+                    <Label>Unidad:</Label>
+                    <Input {...input} type="text" placeholder='Presentacion del producto' />
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </FieldDiv>
+                )}
+              </Field>
+              <FieldDiv>
+                <FieldButtons>
+                <Button type="submit" disabled={submitting | invalid}>
+                  Crear
+                </Button>
+                <Button $mode='reset'
+                  type="button"
+                  onClick={form.reset}
+                  disabled={submitting || pristine}
+                >
+                  Reset
+                </Button>
+              </FieldButtons>
+              </FieldDiv>
+              
+            </form>
+          </FormDiv>
+        )}
+      />
+    </div>
+  )
+}
+
+/**
+ *  <Field
+              name="unidad"
               validate={composeValidators(required)}
             >{({ input, meta }) => (
               <div>
@@ -64,24 +100,7 @@ const ProducForm = () => {
               </div>
             )}
             </Field>
-            <div className="buttons">
-              <button type="submit" disabled={submitting}>
-                Submit
-              </button>
-              <button
-                type="button"
-                onClick={form.reset}
-                disabled={submitting || pristine}
-              >
-                Reset
-              </button>
-            </div>
-          </form>
-        )}
-      />
-    </div>
-  )
-}
+ */
 
 
 

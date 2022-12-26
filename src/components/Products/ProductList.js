@@ -1,16 +1,39 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { productInfoUpdate } from "../../actions/inventoryActions"
+import ProductUpdateForm from "../forms/ProductUpdateForm"
+
+
+
+
+const Product = ({ product, dispatch, user, inventoryId, navigate}) => {
+
+  const onSubmit = (values) => {
+    const productObj = {
+      productID: product.productID,
+      quantity: product.quantity,
+      ...values
+    }
+    dispatch(productInfoUpdate(productObj, inventoryId, user.token))
+    navigate('.')
+  }
+  return (
+    <ProductUpdateForm onSubmit={onSubmit} product={product}/>
+  )
+}
 
 const ProductList = () => {
-  const products = useSelector(state => state.products)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const inventoryId = useSelector(state => state.inventory.id)
+  const user = useSelector(state => state.login)
+  const products = useSelector(state => state.inventory.products)
 
   return (
     <div>
       {products.map(product =>
-        <div key={product.id}>
-          <p>{product.productName}</p>
-          <p>{product.details}</p>
-          <img src={product.url} width="42" height="42" alt=''/>
-        </div>)}
+        <Product key={product.productID} product={product} dispatch={dispatch} user={user} inventoryId={inventoryId} navigate={navigate}/>
+      )}
     </div>
   )
 }

@@ -1,10 +1,7 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { combineReducers } from "redux";
 import thunk from "redux-thunk";
 import loginReducer from "./reducers/loginReducer";
-import cartReducer from "./reducers/cartReducer";
-import productReducer from "./reducers/productReducer";
-import orderReducer from "./reducers/orderReducer";
+import inventoryReducer from "./reducers/inventoryReducer";
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from "redux-persist/lib/storage";
@@ -15,10 +12,8 @@ const persistConfig = {
   whitelist: ['login']
 }
 const rootReducer = combineReducers({
-  products: productReducer, 
-  cart: cartReducer,
+  inventory: inventoryReducer, 
   login: loginReducer,
-  order: orderReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
