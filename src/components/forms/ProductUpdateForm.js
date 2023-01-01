@@ -4,6 +4,7 @@ import { composeValidators, minLength, mustBeLetter, mustBeURL, required } from 
 
 const ProductUpdateForm = ({ onSubmit, product }) => {
   const minLength3 = minLength(3)
+  const minLength2 = minLength(2)
   const minLength22 = minLength(22)
   return (
     <div>
@@ -15,7 +16,7 @@ const ProductUpdateForm = ({ onSubmit, product }) => {
               <Field name="name" initialValue={product.name} validate={composeValidators(required, mustBeLetter, minLength3)}>
                 {({ input, meta }) => (
                   <FieldDiv>
-                    <Img src='https://cdn-icons-png.flaticon.com/512/3214/3214679.png' height='20px' width='20px' alt='' />
+                    <Img src='https://cdn-icons-png.flaticon.com/512/4772/4772299.png' height='20px' width='20px' alt='' />
                     <Label >Nombre:</Label>
                     <Input id="name" {...input} type="text" placeholder="Nombre del producto" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -25,14 +26,14 @@ const ProductUpdateForm = ({ onSubmit, product }) => {
               <Field name="url" initialValue={product.url} validate={composeValidators(required, mustBeURL, minLength22)}>
                 {({ input, meta }) => (
                   <FieldDiv>
-                    <Img src='https://cdn-icons-png.flaticon.com/512/285/285917.png' height='20px' width='20px' alt='' />
+                    <Img src='https://cdn-icons-png.flaticon.com/512/3214/3214679.png' height='20px' width='20px' alt='' />
                     <Label>URL:</Label>
                     <Input id="url" {...input} type="text" placeholder="URL imagen" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </FieldDiv>
                 )}
               </Field>
-              <Field name='unidad' initialValue={product.unidad} validate={composeValidators(required, minLength3)}>
+              <Field name='unidad' initialValue={product.unidad} validate={composeValidators(required, minLength2)}>
                 {({ input, meta }) => (
                   <FieldDiv>
                     <Img src='https://cdn-icons-png.flaticon.com/512/285/285917.png' height='20px' width='20px' alt='' />

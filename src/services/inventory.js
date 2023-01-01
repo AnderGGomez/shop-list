@@ -35,4 +35,4 @@ const updateInventory = async (products, inventoryId, token) => {
 }
 
 
-export default { getInventory, addProduct, updateInventory, updateInfoProduct}
+export default { getInventory, addProduct, updateInventory, updateInfoProduct }

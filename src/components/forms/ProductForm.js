@@ -3,6 +3,7 @@ import { Form, Field } from 'react-final-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../actions/inventoryActions'
 import { Button, FieldButtons, FieldDiv, FormDiv, Img, Input, Label } from '../Estilos/estilos'
+import { FormInput, FormInputWrapper, FormLabel, FormTop, FormWrapper } from '../Estilos/Product/ProductStyle'
 import { required, mustBeLetter, mustBeURL, minLength, composeValidators } from './validators'
 
 
@@ -11,6 +12,7 @@ const ProducForm = () => {
   const inventory = useSelector(state => state.inventory)
   const user = useSelector(state => state.login)
   const minLength3 = minLength(3)
+  const minLength2 = minLength(2)
   const minLength22 = minLength(22)
 
   const onSubmit = (values, form) => {
@@ -24,14 +26,15 @@ const ProducForm = () => {
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, form, submitting, pristine, values, invalid }) => (
-          <FormDiv>
+          <FormWrapper>
+            <FormTop background={'https://cdn-icons-png.flaticon.com/512/9304/9304445.png'}></FormTop>
             <form onSubmit={handleSubmit}>
+              <FormInputWrapper>
               <Field name="name" validate={composeValidators(required, mustBeLetter, minLength3)}>
                 {({ input, meta }) => (
                   <FieldDiv>
-                    <Img src='https://cdn-icons-png.flaticon.com/512/4772/4772299.png' height='20px' width='20px' alt=''/>
-                    <Label> Nombre: </Label>
-                    <Input {...input} type="text" placeholder="Nombre del producto" />
+                    <FormLabel> Nombre: </FormLabel>
+                    <FormInput {...input} type="text" placeholder="Nombre del producto" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </FieldDiv>
                 )}
@@ -39,23 +42,25 @@ const ProducForm = () => {
               <Field name="url" validate={composeValidators(required, mustBeURL, minLength22)}>
                 {({ input, meta }) => (
                   <FieldDiv>
-                    <Img src='https://cdn-icons-png.flaticon.com/512/3214/3214679.png' height='20px' width='20px' alt=''/>
-                    <Label>URL:</Label>
-                    <Input {...input} type="text" placeholder="URL imagen" />
+                    <FormLabel>URL:</FormLabel>
+                    <FormInput {...input} type="text" placeholder="URL imagen" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </FieldDiv>
                 )}
               </Field>
-              <Field name='unidad' validate={composeValidators(required, minLength3)}>
+              <Field name='unidad' validate={composeValidators(required, minLength2)}>
                 {({ input, meta }) => (
                   <FieldDiv>
-                    <Img src='https://cdn-icons-png.flaticon.com/512/285/285917.png' height='20px' width='20px' alt=''/>
-                    <Label>Unidad:</Label>
-                    <Input {...input} type="text" placeholder='Presentacion del producto' />
+                    <FormLabel>Unidad:</FormLabel>
+                    <FormInput {...input} type="text" placeholder='Presentacion del producto' />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </FieldDiv>
                 )}
               </Field>
+              </FormInputWrapper>
+              
+              
+              
               <FieldDiv>
                 <FieldButtons>
                 <Button type="submit" disabled={submitting | invalid}>
@@ -72,7 +77,7 @@ const ProducForm = () => {
               </FieldDiv>
               
             </form>
-          </FormDiv>
+          </FormWrapper>
         )}
       />
     </div>

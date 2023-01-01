@@ -7,16 +7,17 @@ import ProductUpdateForm from "../forms/ProductUpdateForm"
 
 
 const Product = ({ product, dispatch, user, inventoryId, navigate}) => {
-
   const onSubmit = (values) => {
     const productObj = {
       productID: product.productID,
       quantity: product.quantity,
       ...values
     }
+
     dispatch(productInfoUpdate(productObj, inventoryId, user.token))
     navigate('.')
   }
+
   return (
     <ProductUpdateForm onSubmit={onSubmit} product={product}/>
   )

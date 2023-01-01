@@ -16,6 +16,7 @@ export const ItemContainer = styled(Container)`
 padding: 1em;
 font-size: 0.75em;
 font-weight: 500;
+height: 7rem;
 background:${props => props.theme.first_color};
 border: 2px solid ${props => props.theme.fourth_color};
 `
@@ -28,6 +29,7 @@ grid-auto-rows: minmax(50px, auto);
 margin: ${props => props.theme.margin};
 border: 2px solid #000000;
 `
+
 export const InputNumber = styled.input`
   width: 10%;
   text-align: center;
@@ -50,7 +52,8 @@ export const ButtonMath = styled.button`
     width: 2em;
     margin-left: 0.5em;
     margin-right: 0.5em;
-
+    cursor: pointer;
+    
     &:hover {
       background-color: ${props => props.theme.third_color};
     }
@@ -112,10 +115,12 @@ export const FormDiv = styled.div`
  */
 export const FieldDiv = styled.div`
   /*border: 2px solid #FBEFEF;*/
+  margin-top: 0.5rem;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
 `
+
 export const Label = styled.label`
   display: inline-block;
   width: 25%;
@@ -152,6 +157,7 @@ export const Button = styled.button`
   padding: 0.25em  1em;
   font-size: 1em;
   background-color: white;
+  cursor: pointer;
   ${(props) => {
     switch (props.$mode) {
       case 'reset':
