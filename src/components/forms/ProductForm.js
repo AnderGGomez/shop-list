@@ -2,8 +2,8 @@ import React from 'react'
 import { Form, Field } from 'react-final-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../actions/inventoryActions'
-import { Button, FieldButtons, FieldDiv, FormDiv, Img, Input, Label } from '../Estilos/estilos'
-import { FormInput, FormInputWrapper, FormLabel, FormTop, FormWrapper } from '../Estilos/Product/ProductStyle'
+import { FieldDiv } from '../Estilos/estilos'
+import { ButtonForm, FormInput, FormInputWrapper, FormLabel, FormOptions, FormSubmitWrapper, FormTop, FormWrapper, SubmitButton } from '../Estilos/Product/ProductStyle'
 import { required, mustBeLetter, mustBeURL, minLength, composeValidators } from './validators'
 
 
@@ -26,58 +26,58 @@ const ProducForm = () => {
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, form, submitting, pristine, values, invalid }) => (
-          <FormWrapper>
-            <FormTop background={'https://cdn-icons-png.flaticon.com/512/9304/9304445.png'}></FormTop>
+          
+            
             <form onSubmit={handleSubmit}>
+            <FormWrapper>
+            <FormTop background={'https://cdn-icons-png.flaticon.com/512/9304/9304445.png'}></FormTop>
               <FormInputWrapper>
-              <Field name="name" validate={composeValidators(required, mustBeLetter, minLength3)}>
-                {({ input, meta }) => (
-                  <FieldDiv>
-                    <FormLabel> Nombre: </FormLabel>
-                    <FormInput {...input} type="text" placeholder="Nombre del producto" />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </FieldDiv>
-                )}
-              </Field>
-              <Field name="url" validate={composeValidators(required, mustBeURL, minLength22)}>
-                {({ input, meta }) => (
-                  <FieldDiv>
-                    <FormLabel>URL:</FormLabel>
-                    <FormInput {...input} type="text" placeholder="URL imagen" />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </FieldDiv>
-                )}
-              </Field>
-              <Field name='unidad' validate={composeValidators(required, minLength2)}>
-                {({ input, meta }) => (
-                  <FieldDiv>
-                    <FormLabel>Unidad:</FormLabel>
-                    <FormInput {...input} type="text" placeholder='Presentacion del producto' />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </FieldDiv>
-                )}
-              </Field>
+                <Field name="name" validate={composeValidators(required, mustBeLetter, minLength3)}>
+                  {({ input, meta }) => (
+                    <FieldDiv>
+                      <FormLabel> Nombre: </FormLabel>
+                      <FormInput {...input} type="text" placeholder="Nombre del producto" />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </FieldDiv>
+                  )}
+                </Field>
+                <Field name="url" validate={composeValidators(required, mustBeURL, minLength22)}>
+                  {({ input, meta }) => (
+                    <FieldDiv>
+                      <FormLabel>URL:</FormLabel>
+                      <FormInput {...input} type="text" placeholder="URL imagen" />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </FieldDiv>
+                  )}
+                </Field>
+                <Field name='unidad' validate={composeValidators(required, minLength2)}>
+                  {({ input, meta }) => (
+                    <FieldDiv>
+                      <FormLabel>Unidad:</FormLabel>
+                      <FormInput {...input} type="text" placeholder='Presentacion del producto' />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </FieldDiv>
+                  )}
+                </Field>
               </FormInputWrapper>
-              
-              
-              
-              <FieldDiv>
-                <FieldButtons>
-                <Button type="submit" disabled={submitting | invalid}>
-                  Crear
-                </Button>
-                <Button $mode='reset'
-                  type="button"
-                  onClick={form.reset}
-                  disabled={submitting || pristine}
-                >
-                  Reset
-                </Button>
-              </FieldButtons>
-              </FieldDiv>
-              
+              <FormSubmitWrapper>
+                <FormOptions>
+                  <ButtonForm type="submit" disabled={submitting | invalid}>
+                    Crear
+                  </ButtonForm>
+                </FormOptions>
+                <FormOptions>
+                  <ButtonForm $mode='reset'
+                    type="button"
+                    onClick={form.reset}
+                    disabled={submitting || pristine}
+                  >
+                    Reset
+                  </ButtonForm>
+                </FormOptions>
+              </FormSubmitWrapper>
+              </FormWrapper>
             </form>
-          </FormWrapper>
         )}
       />
     </div>
