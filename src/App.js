@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import ProducForm from "./components/forms/ProductForm";
+import ProducForm from "./components/forms/ProductCreateForm";
 import LoginForm from "./components/forms/loginForm";
 import {logoutUser } from "./actions/loginActions";
 import Inventory from "./components/Inventory/Inventory";

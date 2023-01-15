@@ -45,7 +45,8 @@ export const CardImage = styled.div`
 
 export const CardTextTitle = styled.h2`
 margin: 0em;
-font-size: 2rem;
+font-size: 1.5rem;
+font-weight: 600;
 box-sizing: border-box;
 min-width: 0px;
 line-height: 1.2;

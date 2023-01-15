@@ -3,7 +3,7 @@ import { Form, Field } from 'react-final-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../actions/inventoryActions'
 import { FieldDiv } from '../Estilos/estilos'
-import { ButtonForm, FormInput, FormInputWrapper, FormLabel, FormOptions, FormSubmitWrapper, FormTop, FormWrapper, SubmitButton } from '../Estilos/Product/ProductStyle'
+import { ButtonForm, FormInput, FormInputWrapper, FormLabel, FormOptions, FormSubmitWrapper, FormTop, FormWrapper } from '../Estilos/Product/ProductFormStyle'
 import { required, mustBeLetter, mustBeURL, minLength, composeValidators } from './validators'
 
 
@@ -20,17 +20,14 @@ const ProducForm = () => {
     form.restart()
   }
 
-
   return (
     <div>
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, form, submitting, pristine, values, invalid }) => (
-          
-            
-            <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <FormWrapper>
-            <FormTop background={'https://cdn-icons-png.flaticon.com/512/9304/9304445.png'}></FormTop>
+              <FormTop background={'https://cdn-icons-png.flaticon.com/512/9304/9304445.png'}></FormTop>
               <FormInputWrapper>
                 <Field name="name" validate={composeValidators(required, mustBeLetter, minLength3)}>
                   {({ input, meta }) => (
@@ -76,8 +73,8 @@ const ProducForm = () => {
                   </ButtonForm>
                 </FormOptions>
               </FormSubmitWrapper>
-              </FormWrapper>
-            </form>
+            </FormWrapper>
+          </form>
         )}
       />
     </div>

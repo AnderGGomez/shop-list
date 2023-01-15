@@ -61,11 +61,11 @@ export const FormInput = styled.input`
   background-color: #FFF;
   border: 1px solid ${props => props.theme.third_color};
   border-radius: 0.35rem;
+  padding-left: 0.75rem;
   height: 2rem;
   ::placeholder,
   ::-webkit-input-placeholder {
     color: #A09D9D;
-    padding-left: 0.75rem;
   }
   &:valid{
     background-color: white;
